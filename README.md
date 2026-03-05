@@ -337,8 +337,8 @@ Response:
 ## 🎯 Roadmap
 
 - [x] Backend API (FastAPI + pgvector + RAG)
-- [ ] Chrome Extension with Side Panel
-- [ ] Interactive graph visualization (React Flow)
+- [x] Chrome Extension with Side Panel
+- [x] Interactive graph visualization (React Flow)
 - [ ] Cross-device sync
 - [ ] Usage tiers and Stripe integration
 - [ ] Team shared knowledge graphs
