@@ -10,7 +10,11 @@ class Settings(BaseSettings):
     jwt_expiry_hours: int
     similarity_threshold: float
     
-    allow_origins: list[str] = ["*"]
+    allow_origins: str = "*"
+
+    @property
+    def cors_origins(self) -> list[str]:
+        return [o.strip() for o in self.allow_origins.split(",")]
 
     model_config = SettingsConfigDict(
         env_file=".env",

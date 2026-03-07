@@ -300,6 +300,10 @@ Response:
 | `JWT_SECRET` | — | Secret for signing JWT tokens |
 | `JWT_EXPIRY_HOURS` | 24 | Token expiration time |
 | `SIMILARITY_THRESHOLD` | 0.75 | Minimum cosine similarity to create an edge |
+| `DEBUG`  | True | For debugging purpose
+| `ALLOW_ORIGINS` | * | Allowed origins |
+
+Note: set your backend endpoint within extension/sidepanel/config.js
 
 ---
 
