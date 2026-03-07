@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "./hooks/useAuth";
 import AuthForm from "./components/AuthForm";
 import Header from "./components/Header";
@@ -6,10 +6,16 @@ import BottomNav from "./components/BottomNav";
 import GraphView from "./components/GraphView";
 import ActivityFeed from "./components/ActivityFeed";
 import Settings from "./components/Settings";
+import { setupInterceptors } from "./lib/api";
 
 export default function App() {
   const { user, loading, login, register, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("graph");
+
+   useEffect(() => {
+    setupInterceptors(logout);
+  }, [logout]);
+
 
   if (loading) {
     return (

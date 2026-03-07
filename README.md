@@ -161,7 +161,9 @@ deeptrail/
 ### Prerequisites
 
 - Docker and Docker Compose
-- OpenAI API key
+- Gemini AI API key
+- GROQ AI API key
+- Python 3.12.10 
 
 ### 1. Clone the repo
 
@@ -333,6 +335,11 @@ Response:
 | created_at | TIMESTAMPTZ | Auto-set |
 
 ---
+
+
+## Potential Error case
+1. A PostgreSQL async database URL is used by async libraries like asyncpg or SQLAlchemy when working with PostgreSQL in      asynchronous Python frameworks such as FastAPI. 
+   postgresql+asyncpg://USER:PASSWORD@HOST:PORT/DATABASE 
 
 ## 🎯 Roadmap
 

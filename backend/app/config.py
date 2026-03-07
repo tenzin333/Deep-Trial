@@ -5,7 +5,6 @@ class Settings(BaseSettings):
     database_url: str
     jwt_secret: str
     gemini_api_key: str
-    openai_api_key: str
     groq_api_key: str
     debug: bool = False
     jwt_expiry_hours: int

@@ -1,7 +1,7 @@
 // extension/sidepanel/src/hooks/useGraph.js
 import { useState, useEffect, useCallback } from "react";
 import api from "../lib/api";
-import axios from "axios";
+
 
 export function useGraph() {
   const [nodes, setNodes] = useState([]);
@@ -27,7 +27,7 @@ export function useGraph() {
 
   const deleteNode = useCallback(async (nodeId) => {
     try {
-      await axios.delete(`/nodes/${nodeId}`)
+      await api.delete(`/nodes/${nodeId}`)
 
       setNodes((prevData) => {
         const updated = prevData.filter((item) => item.id != nodeId)
@@ -41,7 +41,18 @@ export function useGraph() {
       })
       return { success: True }
     } catch (error) {
-      console.error("[DeepTrail] Delete node failed:", error); return { success: false, error: err.response?.data?.detail || "Failed to delete" };
+      console.error("[DeepTrail] Delete node failed:", error); return { success: false, error: error.response?.data?.detail || "Failed to delete" };
+    }
+  }, [])
+
+  const clearAll = useCallback( async() => {
+    try{
+      await api.delete("/nodes/clearAll");
+      setNodes([])
+      setEdges([])
+      setStats([])
+    }catch(error){
+      console.error("[DeepTrail] Delete node failed:", error); return { success: false, error: error.response?.data?.detail || "Failed to delete" };
     }
   }, [])
 
@@ -52,5 +63,5 @@ export function useGraph() {
     return () => clearInterval(interval);
   }, [fetchGraph]);
 
-  return { nodes, edges, stats, loading, refresh: fetchGraph, deleteNode };
+  return { nodes, edges, stats, loading, refresh: fetchGraph, deleteNode, clearAll };
 }

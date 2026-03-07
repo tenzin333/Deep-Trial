@@ -25,7 +25,7 @@ export default function AuthForm({ onLogin, onRegister }) {
 
   return (
     <div
-      className="flex flex-col items-center justify-center h-screen px-6 max-w-md mx-auto"
+      className="flex flex-col items-center justify-center h-screen px-6 max-w-full"
       style={{ background: "var(--bg-base)" }}
     >
       {/* Ambient glow */}

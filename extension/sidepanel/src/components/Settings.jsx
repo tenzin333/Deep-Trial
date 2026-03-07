@@ -87,7 +87,7 @@ export default function Settings({ onLogout }) {
       {/* Footer */}
       <div className="mt-6 text-center">
         <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>
-          Built with AI-powered knowledge mapping
+          Developed by Tenzin Thinlay
         </p>
       </div>
     </div>
