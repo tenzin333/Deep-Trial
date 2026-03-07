@@ -1,5 +1,4 @@
-// extension/sidepanel/src/components/SearchPanel.jsx
-import { Search, X, ExternalLink, Loader2 } from "lucide-react";
+import { Search, X, ExternalLink, Loader2, Sparkles } from "lucide-react";
 import { useSearch } from "../hooks/useSearch";
 
 export default function SearchPanel() {
@@ -9,58 +8,126 @@ export default function SearchPanel() {
     <div className="p-4">
       {/* Search input */}
       <div className="relative mb-4">
-        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6A737D]" />
+        <Search
+          size={15}
+          className="absolute left-3.5 top-1/2 -translate-y-1/2"
+          style={{ color: "var(--text-muted)" }}
+        />
         <input
           type="text"
           placeholder="Ask about your browsing history..."
           value={query}
           onChange={(e) => search(e.target.value)}
-          className="w-full pl-9 pr-8 py-2.5 rounded-lg bg-[#24272A] border border-[#3B4046] text-white text-sm placeholder-[#6A737D] focus:outline-none focus:border-[#037DD6]"
+          className="w-full pl-10 pr-9 py-2.5 rounded-xl text-sm transition-all duration-200"
+          style={{
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border)",
+            color: "var(--text-primary)",
+            fontFamily: "var(--font-sans)",
+            outline: "none",
+          }}
+          onFocus={(e) => e.target.style.borderColor = "var(--accent)"}
+          onBlur={(e) => e.target.style.borderColor = "var(--border)"}
         />
         {query && (
-          <button onClick={clear} className="absolute right-3 top-1/2 -translate-y-1/2">
-            <X size={14} className="text-[#6A737D] hover:text-white" />
+          <button
+            onClick={clear}
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded-md transition-colors"
+            style={{ color: "var(--text-muted)" }}
+            onMouseEnter={(e) => e.target.style.color = "var(--text-primary)"}
+            onMouseLeave={(e) => e.target.style.color = "var(--text-muted)"}
+          >
+            <X size={14} />
           </button>
         )}
       </div>
 
       {/* Loading */}
       {loading && (
-        <div className="flex items-center justify-center py-8">
-          <Loader2 size={20} className="text-[#037DD6] animate-spin" />
-          <span className="ml-2 text-sm text-[#9FA6AE]">Thinking...</span>
+        <div className="flex items-center justify-center py-10">
+          <div className="flex items-center gap-2.5">
+            <Loader2
+              size={18}
+              className="animate-spin"
+              style={{ color: "var(--accent)" }}
+            />
+            <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+              Thinking...
+            </span>
+          </div>
         </div>
       )}
 
       {/* Answer */}
       {result && (
-        <div className="space-y-3">
-          <div className="bg-[#24272A] rounded-xl p-4 border border-[#3B4046]">
-            <p className="text-sm text-white leading-relaxed">{result.answer}</p>
+        <div className="space-y-4 animate-fade-in-up">
+          <div
+            className="rounded-2xl p-4"
+            style={{
+              background: "var(--bg-raised)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            <div className="flex items-center gap-2 mb-2.5">
+              <Sparkles size={13} style={{ color: "var(--accent)" }} />
+              <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: "var(--accent)" }}>
+                AI Answer
+              </span>
+            </div>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--text-primary)" }}>
+              {result.answer}
+            </p>
           </div>
 
           {/* Sources */}
           {result.sources.length > 0 && (
             <div>
-              <p className="text-xs text-[#6A737D] mb-2 uppercase tracking-wider">Sources</p>
+              <p
+                className="text-[10px] font-semibold uppercase tracking-wider mb-2.5 px-1"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Sources
+              </p>
               <div className="space-y-2">
                 {result.sources.map((source, i) => (
-                <a
+                  <a
                     key={i}
                     href={source.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 bg-[#1C1E21] rounded-lg p-3 border border-[#3B4046] hover:border-[#037DD6] transition"
+                    className="flex items-center gap-3 rounded-xl p-3 transition-all duration-200"
+                    style={{
+                      background: "var(--bg-surface)",
+                      border: "1px solid var(--border)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border-active)";
+                      e.currentTarget.style.background = "var(--bg-overlay)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border)";
+                      e.currentTarget.style.background = "var(--bg-surface)";
+                    }}
                   >
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-white truncate">{source.title}</p>
-                      <p className="text-[10px] text-[#6A737D] truncate">{source.url}</p>
+                      <p className="text-xs font-medium truncate" style={{ color: "var(--text-primary)" }}>
+                        {source.title}
+                      </p>
+                      <p className="text-[10px] truncate mt-0.5" style={{ color: "var(--text-muted)" }}>
+                        {source.url}
+                      </p>
                     </div>
-                    <div className="flex items-center gap-1 shrink-0">
-                      <span className="text-[10px] text-[#037DD6] font-medium">
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span
+                        className="text-[10px] font-semibold px-1.5 py-0.5 rounded-md"
+                        style={{
+                          background: "var(--accent-muted)",
+                          color: "var(--accent)",
+                        }}
+                      >
                         {Math.round(source.similarity_score * 100)}%
                       </span>
-                      <ExternalLink size={12} className="text-[#6A737D]" />
+                      <ExternalLink size={11} style={{ color: "var(--text-muted)" }} />
                     </div>
                   </a>
                 ))}
@@ -72,13 +139,43 @@ export default function SearchPanel() {
 
       {/* Empty state */}
       {!loading && !result && (
-        <div className="text-center py-8">
-          <Search size={32} className="mx-auto text-[#3B4046] mb-3" />
-          <p className="text-sm text-[#9FA6AE]">Ask anything</p>
-          <p className="text-xs text-[#6A737D] mt-1">
-            "What was I reading about React?"<br />
-            "Summarize my AI research this week"
+        <div className="text-center py-10 animate-fade-in">
+          <div
+            className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            style={{ background: "var(--accent-muted)" }}
+          >
+            <Search size={20} style={{ color: "var(--accent)" }} />
+          </div>
+          <p className="text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
+            Ask anything
           </p>
+          <div className="mt-3 space-y-1.5">
+            {[
+              "What was I reading about React?",
+              "Summarize my AI research this week",
+            ].map((suggestion) => (
+              <button
+                key={suggestion}
+                onClick={() => search(suggestion)}
+                className="block mx-auto px-3 py-1.5 rounded-lg text-xs transition-all duration-200"
+                style={{
+                  color: "var(--text-muted)",
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border)",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = "var(--border-hover)";
+                  e.target.style.color = "var(--text-secondary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.borderColor = "var(--border)";
+                  e.target.style.color = "var(--text-muted)";
+                }}
+              >
+                "{suggestion}"
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>

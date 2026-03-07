@@ -4,7 +4,6 @@ import AuthForm from "./components/AuthForm";
 import Header from "./components/Header";
 import BottomNav from "./components/BottomNav";
 import GraphView from "./components/GraphView";
-import SearchPanel from "./components/SearchPanel";
 import ActivityFeed from "./components/ActivityFeed";
 import Settings from "./components/Settings";
 
@@ -14,8 +13,19 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-[#141618]">
-        <div className="w-8 h-8 border-2 border-[#037DD6] border-t-transparent rounded-full animate-spin" />
+      <div className="flex items-center justify-center h-screen" style={{ background: "var(--bg-base)" }}>
+        <div className="flex flex-col items-center gap-4">
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center"
+            style={{ background: "var(--accent-muted)" }}
+          >
+            <div
+              className="w-5 h-5 rounded-full border-2 border-t-transparent animate-spin"
+              style={{ borderColor: "var(--accent)", borderTopColor: "transparent" }}
+            />
+          </div>
+          <p className="text-xs" style={{ color: "var(--text-muted)" }}>Loading...</p>
+        </div>
       </div>
     );
   }
@@ -25,14 +35,15 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-[#141618]">
+    <div className="flex flex-col h-screen" style={{ background: "var(--bg-base)" }}>
       <Header email={user.email} />
 
       <main className="flex-1 overflow-y-auto">
-        {activeTab === "graph" && <GraphView />}
-        {activeTab === "search" && <SearchPanel />}
-        {activeTab === "activity" && <ActivityFeed />}
-        {activeTab === "settings" && <Settings onLogout={logout} />}
+        <div key={activeTab} className="animate-fade-in">
+          {activeTab === "graph" && <GraphView />}
+          {activeTab === "activity" && <ActivityFeed />}
+          {activeTab === "settings" && <Settings onLogout={logout} />}
+        </div>
       </main>
 
       <BottomNav active={activeTab} onChange={setActiveTab} />

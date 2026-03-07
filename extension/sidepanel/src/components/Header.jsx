@@ -1,47 +1,83 @@
-// extension/sidepanel/src/components/Header.jsx
 import { useGraph } from "../hooks/useGraph";
 
 export default function Header({ email }) {
   const { stats } = useGraph();
 
   return (
-    <div className="bg-[#24272A] rounded-xl p-4 text-center w-full">
-      {/* Top row — account */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#037DD6] to-[#F5841F] flex items-center justify-center">
-            <span className="text-xs font-bold text-white">
-              {email[0].toUpperCase()}
-            </span>
+    <div className="px-4 pt-4 pb-2">
+      {/* Account row */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2.5">
+          <div
+            className="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-semibold text-white"
+            style={{
+              background: "linear-gradient(135deg, var(--accent), #9F7AEA)",
+            }}
+          >
+            {email[0].toUpperCase()}
           </div>
-          <span className="text-sm text-[#9FA6AE] truncate max-w-[180px]">
-            {email}
-          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-medium truncate max-w-[160px]" style={{ color: "var(--text-primary)" }}>
+              {email.split("@")[0]}
+            </p>
+            <p className="text-[10px] truncate max-w-[160px]" style={{ color: "var(--text-muted)" }}>
+              {email}
+            </p>
+          </div>
         </div>
-        <div className="flex items-center gap-1">
-          <div className="w-2 h-2 rounded-full bg-[#28A745]" />
-          <span className="text-xs text-[#6A737D]">Active</span>
+        <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "var(--green-muted)" }}>
+          <div className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--green)" }} />
+          <span className="text-[10px] font-medium" style={{ color: "var(--green)" }}>Active</span>
         </div>
       </div>
 
-      {/* Stats card */}
-      <div className="bg-[#24272A] rounded-xl p-4 text-center">
-        <p className="text-3xl font-bold text-white">{stats.nodes}</p>
-        <p className="text-xs text-[#9FA6AE] mt-1">Pages Captured</p>
-        <div className="flex justify-center gap-4 mt-3">
-          <div className="text-center">
-            <p className="text-sm font-semibold text-[#037DD6]">{stats.edges}</p>
-            <p className="text-xs text-[#6A737D]">Connections</p>
-          </div>
-          <div className="w-px bg-[#3B4046]" />
-          <div className="text-center">
-            <p className="text-sm font-semibold text-[#28A745]">
-              {stats.nodes > 0 ? Math.round((stats.edges / stats.nodes) * 10) / 10 : 0}
-            </p>
-            <p className="text-xs text-[#6A737D]">Avg Links</p>
-          </div>
+      {/* Stats row */}
+      <div
+        className="rounded-2xl p-4"
+        style={{
+          background: "var(--bg-raised)",
+          border: "1px solid var(--border)",
+        }}
+      >
+        <div className="flex items-center justify-between">
+          <StatItem
+            value={stats.nodes}
+            label="Pages"
+            color="var(--accent)"
+            bg="var(--accent-muted)"
+          />
+          <div className="w-px h-8" style={{ background: "var(--border)" }} />
+          <StatItem
+            value={stats.edges}
+            label="Connections"
+            color="var(--green)"
+            bg="var(--green-muted)"
+          />
+          <div className="w-px h-8" style={{ background: "var(--border)" }} />
+          <StatItem
+            value={stats.nodes > 0 ? (stats.edges / stats.nodes).toFixed(1) : "0"}
+            label="Avg Links"
+            color="var(--amber)"
+            bg="var(--amber-muted)"
+          />
         </div>
       </div>
+    </div>
+  );
+}
+
+function StatItem({ value, label, color, bg }) {
+  return (
+    <div className="flex-1 text-center">
+      <div className="flex items-center justify-center gap-1.5 mb-1">
+        <div className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
+        <p className="text-lg font-bold tabular-nums" style={{ color, letterSpacing: "-0.02em" }}>
+          {value}
+        </p>
+      </div>
+      <p className="text-[10px] font-medium uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
+        {label}
+      </p>
     </div>
   );
 }
