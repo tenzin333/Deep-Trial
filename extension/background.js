@@ -1,6 +1,7 @@
-// background.js — Service Worker
+import config from "./sidepanel/config";
 
-const API_URL = "http://localhost:8000/api";
+
+const API_URL = config.API_URL ?? "http://localhost:8000/api";
 
 // Track recently sent URLs to avoid duplicates (30-min window)
 const recentlySent = new Map();
