@@ -185,6 +185,9 @@ DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/knowledgegraph
 OPENAI_API_KEY=sk-your-key-here
 GEMINI_API_KEY=sk-your-key-here
 JWT_SECRET=generate-a-random-string-here
+DEBUG=True
+JWT_EXPIRY_HOURS=2
+SIMILARITY_THRESHOLD=0.75
 ```
 
 ### 3. Start the app
