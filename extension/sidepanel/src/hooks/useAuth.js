@@ -6,7 +6,7 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    chrome.storage.local.get(["token", "email"], (data) => {
+    chrome.storage.local .get(["token", "email"], (data) => {
       if (data.token && data.email) {
         setUser({ email: data.email, token: data.token });
       }

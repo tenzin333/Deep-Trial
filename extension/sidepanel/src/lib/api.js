@@ -14,4 +14,18 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 
+
+export const setupInterceptors = (logout) => {
+  api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+     if (error.response?.status === 401 && !error.config._retry) {
+        logout(); // clears user
+      }
+
+      return Promise.reject(error);
+    }
+  );
+};
+
 export default api;

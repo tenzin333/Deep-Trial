@@ -1,37 +1,94 @@
-// extension/sidepanel/src/components/Settings.jsx
-import { LogOut, Github, Info } from "lucide-react";
+import { LogOut, Github, Info, ChevronRight, ExternalLink } from "lucide-react";
 
 export default function Settings({ onLogout }) {
   return (
-    <div className="p-4 space-y-3">
-      <p className="text-xs text-[#6A737D] uppercase tracking-wider mb-3">Settings</p>
+    <div className="p-4 animate-fade-in">
+      <p
+        className="text-[10px] font-semibold uppercase tracking-wider mb-3 px-1"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Settings
+      </p>
 
-      <div className="bg-[#1C1E21] rounded-lg border border-[#3B4046] divide-y divide-[#3B4046]">
+      <div
+        className="rounded-2xl overflow-hidden"
+        style={{
+          background: "var(--bg-surface)",
+          border: "1px solid var(--border)",
+        }}
+      >
+        {/* GitHub link */}
         <a
-          href="https://github.com/yourusername/deeptrail"
+          href="https://github.com/tenzin333/deeptrail"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 p-3 hover:bg-[#24272A] transition"
+          className="flex items-center gap-3 px-4 py-3.5 transition-colors duration-150"
+          style={{ borderBottom: "1px solid var(--border)" }}
+          onMouseEnter={(e) => e.currentTarget.style.background = "var(--bg-overlay)"}
+          onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
         >
-          <Github size={16} className="text-[#9FA6AE]" />
-          <span className="text-sm text-white">GitHub</span>
+          <div
+            className="w-8 h-8 rounded-xl flex items-center justify-center"
+            style={{ background: "var(--bg-overlay)" }}
+          >
+            <Github size={15} style={{ color: "var(--text-secondary)" }} />
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>GitHub</p>
+            <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>View source code</p>
+          </div>
+          <ExternalLink size={14} style={{ color: "var(--text-muted)" }} />
         </a>
 
-        <div className="flex items-center gap-3 p-3">
-          <Info size={16} className="text-[#9FA6AE]" />
-          <div>
-            <span className="text-sm text-white">Version</span>
-            <span className="text-xs text-[#6A737D] ml-2">1.0.0</span>
+        {/* Version */}
+        <div
+          className="flex items-center gap-3 px-4 py-3.5"
+          style={{ borderBottom: "1px solid var(--border)" }}
+        >
+          <div
+            className="w-8 h-8 rounded-xl flex items-center justify-center"
+            style={{ background: "var(--bg-overlay)" }}
+          >
+            <Info size={15} style={{ color: "var(--text-secondary)" }} />
           </div>
+          <div className="flex-1">
+            <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>Version</p>
+            <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>DeepTrail Extension</p>
+          </div>
+          <span
+            className="text-xs font-medium px-2 py-0.5 rounded-lg"
+            style={{
+              background: "var(--accent-muted)",
+              color: "var(--accent)",
+              fontFamily: "var(--font-mono)",
+            }}
+          >
+            v1.0.0
+          </span>
         </div>
 
+        {/* Sign Out */}
         <button
           onClick={onLogout}
-          className="flex items-center gap-3 p-3 w-full hover:bg-[#24272A] transition"
+          className="flex items-center gap-3 px-4 py-3.5 w-full transition-colors duration-150"
+          onMouseEnter={(e) => e.currentTarget.style.background = "var(--red-muted)"}
+          onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
         >
-          <LogOut size={16} className="text-[#D73847]" />
-          <span className="text-sm text-[#D73847]">Sign Out</span>
+          <div
+            className="w-8 h-8 rounded-xl flex items-center justify-center"
+            style={{ background: "var(--red-muted)" }}
+          >
+            <LogOut size={15} style={{ color: "var(--red)" }} />
+          </div>
+          <p className="text-sm font-medium" style={{ color: "var(--red)" }}>Sign Out</p>
         </button>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-6 text-center">
+        <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>
+          Developed by Tenzin Thinlay
+        </p>
       </div>
     </div>
   );
