@@ -14,4 +14,3 @@ slowapi==0.1.9
 tenacity
 pydantic[email]
 google-genai==1.0.0
-psycopg2
