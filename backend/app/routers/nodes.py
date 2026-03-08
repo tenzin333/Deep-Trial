@@ -36,26 +36,28 @@ async def ingest_node(
 
         edges_created = 0
 
-        text = await extract_text(body.url)
-        if text:
-            node.raw_text = text
-            embedding = await get_embedding(text)
-            node.embedding = embedding
+        # Track whether we got real content or just fallback
+        real_content = await extract_text(body.url)
+        is_fallback = real_content is None
 
-            similar = await find_similar_nodes(db, embedding, str(user.id), str(node.id))
-            for target_id, score in similar:
-                edge = Edge(source_node_id=node.id, target_node_id=target_id, similarity_score=score)
-                db.add(edge)
-                edges_created += 1
+        text = real_content if real_content else f"{body.title} {body.url}"
 
-            background_tasks.add_task(run_summarization, str(node.id))
-        else:
-            node.summary_status = "failed"
-            
+        node.raw_text = text
+        embedding = await get_embedding(text)
+        node.embedding = embedding
+
+        similar = await find_similar_nodes(db, embedding, str(user.id), str(node.id))
+        for target_id, score in similar:
+            edge = Edge(source_node_id=node.id, target_node_id=target_id, similarity_score=score)
+            db.add(edge)
+            edges_created += 1
+
+        background_tasks.add_task(run_summarization, str(node.id))
+
         return NodeIngestResponse(
             node_id=node.id,
             edges_created=edges_created,
-            status="processing" if text else "failed",
+            status="processing" if not is_fallback else "partial",
         )
 
     except HTTPException:

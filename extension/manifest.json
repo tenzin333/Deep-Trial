@@ -7,10 +7,12 @@
     "tabs",
     "activeTab",
     "sidePanel",
-    "storage"
+    "storage",
+    "alarms"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "side_panel": {
     "default_path": "sidepanel-dist/index.html"
