@@ -1,8 +1,10 @@
 import axios from "axios";
-import config from "../../config";
 
+const API_BASE = import.meta.env.VITE_API_BASE;
+const ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
+console.log("API_BASE",API_BASE)
 const api = axios.create({
-  baseURL: config.API_BASE,
+  baseURL: ENVIRONMENT=="development" ? "http://localhost:8000/api" : API_BASE,
   headers: { "Content-Type": "application/json" }
 });
 

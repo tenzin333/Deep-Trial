@@ -1,7 +1,21 @@
-import config from "./sidepanel/config";
 
+// const DEV = !('update_url' in chrome.runtime.getManifest());
 
-const API_URL = config.API_URL ?? "http://localhost:8000/api";
+// const CONFIG = {
+//   API_BASE: DEV
+//     ? "http://localhost:8000/api"
+//     : "https://deep-trial.onrender.com/api",
+// };
+
+const CONFIG = {
+  API_BASE: "https://deep-trial.onrender.com/api"
+}
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.set({ config: CONFIG });
+});
+
+const API_URL = CONFIG.API_BASE;
 
 // Track recently sent URLs to avoid duplicates (30-min window)
 const recentlySent = new Map();
@@ -57,11 +71,15 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 });
 
 // Clean up old entries from dedup map every 10 minutes
-setInterval(() => {
-  const now = Date.now();
-  for (const [url, timestamp] of recentlySent) {
-    if (now - timestamp > DEDUP_WINDOW) {
-      recentlySent.delete(url);
+chrome.alarms.create("dedup-cleanup", { periodInMinutes: 10 });
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === "dedup-cleanup") {
+    const now = Date.now();
+    for (const [url, timestamp] of recentlySent) {
+      if (now - timestamp > DEDUP_WINDOW) {
+        recentlySent.delete(url);
+      }
     }
   }
-}, 10 * 60 * 1000);
+});
