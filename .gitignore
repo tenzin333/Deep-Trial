@@ -1,6 +1,9 @@
 .env
 .env.*
+venv/
 node_modules/
 __pycache__/
 *.pyc
 sidepanel-dist/
+extension.crx
+extension.pem

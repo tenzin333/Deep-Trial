@@ -11,7 +11,7 @@ import { setupInterceptors } from "./lib/api";
 export default function App() {
   const { user, loading, login, register, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("graph");
-
+  
    useEffect(() => {
     setupInterceptors(logout);
   }, [logout]);
