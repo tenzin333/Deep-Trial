@@ -32,7 +32,7 @@ FastAPI Backend
         │
         ├─→ Text Extractor (httpx + trafilatura)
         ├─→ Embedder (OpenAI text-embedding-3-small → 768-d vector)
-        ├─→ Similarity Engine (pgvector cosine search, threshold ≥ 0.75)
+        ├─→ Similarity Engine (pgvector cosine search, threshold ≥ 0.6)
         ├─→ Summarizer (GPT-4o-mini, async background task)
         └─→ RAG Engine (embed query → top-K retrieval → LLM answer)
         │
@@ -187,7 +187,7 @@ GEMINI_API_KEY=sk-your-key-here
 JWT_SECRET=generate-a-random-string-here
 DEBUG=True
 JWT_EXPIRY_HOURS=2
-SIMILARITY_THRESHOLD=0.75
+SIMILARITY_THRESHOLD=0.6
 ```
 
 ### 3. Start the app
@@ -277,7 +277,7 @@ Response:
          ↓
 5. Text → OpenAI → 768-d embedding vector
          ↓
-6. pgvector scans existing nodes for cosine similarity ≥ 0.75
+6. pgvector scans existing nodes for cosine similarity ≥ 0.6
          ↓
 7. Matching nodes get connected via edges in the graph
          ↓
@@ -299,7 +299,7 @@ Response:
 | `OPENAI_API_KEY` | — | Your OPENAI API key |
 | `JWT_SECRET` | — | Secret for signing JWT tokens |
 | `JWT_EXPIRY_HOURS` | 24 | Token expiration time |
-| `SIMILARITY_THRESHOLD` | 0.75 | Minimum cosine similarity to create an edge |
+| `SIMILARITY_THRESHOLD` | 0.6 | Minimum cosine similarity to create an edge |
 | `DEBUG`  | True | For debugging purpose
 | `ALLOW_ORIGINS` | * | Allowed origins |
 
@@ -338,7 +338,7 @@ Note: set your backend endpoint within extension/sidepanel/config.js
 | id | UUID | Primary key |
 | source_node_id | UUID | FK → nodes, cascade delete |
 | target_node_id | UUID | FK → nodes, cascade delete |
-| similarity_score | FLOAT | Cosine similarity (0.75–1.0) |
+| similarity_score | FLOAT | Cosine similarity (0.6–1.0) |
 | created_at | TIMESTAMPTZ | Auto-set |
 
 ---
