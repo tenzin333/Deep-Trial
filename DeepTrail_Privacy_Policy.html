@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeepTrail — Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0C0D0F;
+      --bg-raised: #131517;
+      --bg-surface: #1A1C1F;
+      --bg-overlay: #222528;
+      --accent: #6C8EEF;
+      --accent-hover: #8BA5F5;
+      --accent-muted: rgba(108,142,239,0.12);
+      --purple: #9F7AEA;
+      --green: #3DD68C;
+      --amber: #F0B429;
+      --red: #EF6B73;
+      --text-primary: #EAEDF0;
+      --text-secondary: #8B929A;
+      --text-muted: #565C64;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.1);
+      --gradient-accent: linear-gradient(135deg, #6C8EEF, #9F7AEA);
+      --radius: 12px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.5);
+      --font: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { background: var(--bg); color: var(--text-primary); font-family: var(--font); }
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 0 0 80px;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── Header ─── */
+    header {
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 24px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%; transform: translateX(-50%);
+      width: 320px; height: 320px; border-radius: 50%;
+      background: var(--accent);
+      filter: blur(120px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: var(--gradient-accent);
+      box-shadow: 0 8px 28px rgba(108,142,239,0.3);
+      margin-bottom: 14px;
+    }
+    .logo svg { width: 24px; height: 24px; }
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    .subtitle { font-size: 13px; color: var(--text-muted); }
+    .meta {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px; padding: 5px 12px; border-radius: 20px;
+      background: var(--bg-overlay); border: 1px solid var(--border);
+      font-size: 11px; color: var(--text-muted);
+    }
+    .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    /* ─── Main content ─── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px 0;
+    }
+
+    /* ─── Overview card ─── */
+    .overview {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 36px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Sections ─── */
+    section { margin-bottom: 40px; }
+    .section-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .section-num {
+      display: flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 8px;
+      background: var(--accent-muted);
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      font-family: var(--mono);
+      flex-shrink: 0;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── Sub-sections ─── */
+    h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 20px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    /* ─── Tables ─── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 14px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead { background: var(--bg-overlay); }
+    thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr { transition: background 0.15s; }
+    tbody tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
+    tbody tr:hover { background: var(--bg-overlay); }
+    td {
+      padding: 10px 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      vertical-align: top;
+    }
+    td:first-child { color: var(--text-primary); font-weight: 500; white-space: nowrap; }
+    td a { color: var(--accent); text-decoration: none; }
+    td a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    /* ─── Info boxes ─── */
+    .info-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin: 14px 0;
+    }
+    .info-box.note {
+      border-left: 3px solid var(--amber);
+      background: rgba(240,180,41,0.05);
+    }
+    .info-box.success {
+      border-left: 3px solid var(--green);
+      background: rgba(61,214,140,0.05);
+    }
+    .info-box strong { color: var(--text-primary); }
+
+    /* ─── Lists ─── */
+    ul, ol { padding-left: 20px; margin: 10px 0 14px; }
+    li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    li::marker { color: var(--accent); }
+
+    /* ─── Contact card ─── */
+    .contact-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-row {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--text-secondary);
+    }
+    .contact-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--accent-muted);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 14px;
+    }
+    .contact-row a { color: var(--accent); text-decoration: none; }
+    .contact-row a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    /* ─── Footer ─── */
+    footer {
+      margin-top: 60px;
+      padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      header { padding: 24px 16px 20px; }
+      main { padding: 28px 16px 0; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <line x1="12" y1="3" x2="12" y2="6"/>
+        <line x1="12" y1="18" x2="12" y2="21"/>
+        <line x1="3" y1="12" x2="6" y2="12"/>
+        <line x1="18" y1="12" x2="21" y2="12"/>
+        <line x1="5.6" y1="5.6" x2="7.8" y2="7.8"/>
+        <line x1="16.2" y1="16.2" x2="18.4" y2="18.4"/>
+        <line x1="5.6" y1="18.4" x2="7.8" y2="16.2"/>
+        <line x1="16.2" y1="7.8" x2="18.4" y2="5.6"/>
+      </svg>
+    </div>
+    <h1>DeepTrail</h1>
+    <p class="subtitle">Privacy Policy</p>
+    <div class="meta">
+      <span class="meta-dot"></span>
+      Last updated: May 27, 2026 &nbsp;·&nbsp; Extension v1.0.2
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Overview -->
+    <div class="overview">
+      DeepTrail is a Chrome Extension that builds a personal AI knowledge graph from your browsing history. This Privacy Policy explains what data we collect, how we use it, who we share it with, how we store it, and what controls you have. By installing DeepTrail, you agree to the practices described here.
+    </div>
+
+    <!-- 1. Data We Collect -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">1</span>
+        <h2>Data We Collect</h2>
+      </div>
+
+      <h3>1.1 Account Data</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Why We Collect It</th></tr></thead>
+          <tbody>
+            <tr><td>Email address</td><td>Required to create and identify your account</td></tr>
+            <tr><td>Password</td><td>For authentication — stored only as a bcrypt hash, never in plain text</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>1.2 Browsing Activity Data</h3>
+      <p>When you save a page (manually with <strong>Ctrl+Shift+S</strong> or automatically with auto-save enabled):</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Why We Collect It</th></tr></thead>
+          <tbody>
+            <tr><td>Page URL</td><td>To identify and de-duplicate pages in your knowledge graph</td></tr>
+            <tr><td>Page title</td><td>To display a readable label for each node in your graph</td></tr>
+            <tr><td>Extracted page text (up to 30 KB)</td><td>To generate AI summaries, keywords, and semantic embeddings</td></tr>
+            <tr><td>Timestamp of visit</td><td>To order and display your captured pages</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>1.3 Locally Stored Data (On Your Device Only)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Storage Location</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>JWT authentication token</td><td>chrome.storage.local</td><td>Keeps you signed in across sessions</td></tr>
+            <tr><td>Email address</td><td>chrome.storage.local</td><td>Displays your email in the extension header</td></tr>
+            <tr><td>Auto-save preference</td><td>chrome.storage.local</td><td>Remembers your auto-save on/off setting</td></tr>
+            <tr><td>API configuration</td><td>chrome.storage.local</td><td>Stores the backend server URL</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2. Data We Do NOT Collect -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">2</span>
+        <h2>Data We Do NOT Collect</h2>
+      </div>
+      <div class="info-box success">
+        <strong>DeepTrail intentionally avoids capturing the following:</strong>
+      </div>
+      <ul>
+        <li>Content from <strong>Google services</strong> (Gmail, Google Calendar, Google Accounts, Google Search) — explicitly excluded by the extension</li>
+        <li>Content from <strong>Chrome internal pages</strong> (chrome://, about:blank, etc.) — explicitly excluded</li>
+        <li>Content from the <strong>Chrome Web Store</strong> — explicitly excluded</li>
+        <li>Passwords in plain text (only bcrypt hashes are stored server-side)</li>
+        <li>Financial information, credit card or banking data</li>
+        <li>Health or medical information</li>
+        <li>Precise geolocation data</li>
+        <li>Contacts, calendar entries, or photos</li>
+        <li>Audio, video, or microphone input</li>
+        <li>Any data from pages you have <strong>not</strong> chosen to save</li>
+      </ul>
+    </section>
+
+    <!-- 3. How We Use Your Data -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">3</span>
+        <h2>How We Use Your Data</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>How It Is Used</th></tr></thead>
+          <tbody>
+            <tr><td>Email + password hash</td><td>Account authentication and login</td></tr>
+            <tr><td>Saved URLs, titles, timestamps</td><td>Building your knowledge graph; displaying Activity Feed</td></tr>
+            <tr><td>Extracted page text</td><td>Input for AI summarization and semantic embedding generation</td></tr>
+            <tr><td>AI summaries and keywords</td><td>Displayed in your graph and Activity Feed</td></tr>
+            <tr><td>Vector embeddings</td><td>Computing similarity scores to automatically link related pages</td></tr>
+            <tr><td>Your search queries</td><td>Finding semantically relevant pages and generating AI answers</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-box note">
+        <strong>We do not</strong> use your data for advertising, sell it to third parties, or use it to train AI models. Data is passed to third-party APIs transiently for processing only.
+      </div>
+    </section>
+
+    <!-- 4. Third-Party Services -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">4</span>
+        <h2>Third-Party Services</h2>
+      </div>
+      <p>DeepTrail uses the following third-party services to provide AI features. We do not sell your data to any of these parties.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Service</th><th>Data Sent</th><th>Purpose</th><th>Privacy Policy</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google Gemini API</td>
+              <td>Extracted page text (up to 30 KB per page)</td>
+              <td>Generates 768-dimensional semantic embeddings for similarity matching</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></td>
+            </tr>
+            <tr>
+              <td>Groq API (LLaMA-3.3-70b)</td>
+              <td>(1) First 4 KB of page text for summarization. (2) Your search question + relevant summaries for AI answers.</td>
+              <td>Generates page summaries, keywords, and answers your natural-language queries</td>
+              <td><a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener">Groq Privacy Policy</a></td>
+            </tr>
+            <tr>
+              <td>Jina Reader API</td>
+              <td>Page URL only (no page content)</td>
+              <td>Extracts readable text from JavaScript-heavy pages when standard parsing fails</td>
+              <td><a href="https://jina.ai/legal/#privacy-policy" target="_blank" rel="noopener">Jina AI Privacy Policy</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box note">
+        <strong>Note:</strong> Content sent to these services is transmitted transiently for processing only. DeepTrail does not instruct these providers to use your data to train their models.
+      </div>
+    </section>
+
+    <!-- 5. Data Storage & Security -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">5</span>
+        <h2>Data Storage &amp; Security</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>Storage location</td><td>PostgreSQL database hosted on <a href="https://render.com/privacy" target="_blank" rel="noopener">Render</a> (United States)</td></tr>
+            <tr><td>Password security</td><td>All passwords are hashed using bcrypt with a unique salt before storage. Plain-text passwords are never stored or logged.</td></tr>
+            <tr><td>Data in transit</td><td>All communication between the extension and our backend uses HTTPS/TLS encryption</td></tr>
+            <tr><td>Authentication</td><td>JWT tokens with short expiry windows; tokens are stored only in your browser's local storage, not on our servers</td></tr>
+            <tr><td>Embeddings</td><td>768-dimensional vectors derived from page content are stored for similarity search; they cannot be reverse-engineered to recover original text</td></tr>
+            <tr><td>Analytics &amp; tracking</td><td>We do not use advertising SDKs, analytics services, or crash-reporting tools that access user data independently</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. User Controls & Data Deletion -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">6</span>
+        <h2>User Controls &amp; Data Deletion</h2>
+      </div>
+      <p>You have full control over your data:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Action</th><th>How To Do It</th></tr></thead>
+          <tbody>
+            <tr><td>Disable auto-save</td><td>Settings tab → toggle "Auto-Save Pages" off. Only pages you manually trigger (Ctrl+Shift+S) will be saved.</td></tr>
+            <tr><td>Delete a single page</td><td>Graph tab → click a node → select Delete</td></tr>
+            <tr><td>Delete all saved data</td><td>Graph tab → "Clear All" button — permanently removes all your nodes, summaries, embeddings, and connections</td></tr>
+            <tr><td>Sign out</td><td>Settings tab → "Sign Out" — removes your authentication token from the browser</td></tr>
+            <tr><td>Delete your account</td><td>Email <a href="mailto:tenthinlay007@gmail.com">tenthinlay007@gmail.com</a> with subject "Account Deletion Request" — all account data will be permanently deleted within 30 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-box note">
+        <strong>Note:</strong> Deleting all nodes removes all associated summaries, keywords, embeddings, and graph connections. This action cannot be undone.
+      </div>
+    </section>
+
+    <!-- 7. Data Retention -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">7</span>
+        <h2>Data Retention</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data Type</th><th>Retention Period</th></tr></thead>
+          <tbody>
+            <tr><td>Saved pages (URLs, titles, summaries, embeddings)</td><td>Until you delete them manually or request account deletion</td></tr>
+            <tr><td>Account credentials</td><td>Until you request account deletion</td></tr>
+            <tr><td>Local browser data (token, preferences)</td><td>Until you sign out or uninstall the extension</td></tr>
+            <tr><td>Data sent to third-party APIs</td><td>Processed transiently; subject to each provider's own retention policies (see their privacy policies above)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>We do not have an automatic data purge schedule. You are responsible for managing and deleting your own saved data.</p>
+    </section>
+
+    <!-- 8. Children's Privacy -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">8</span>
+        <h2>Children's Privacy</h2>
+      </div>
+      <p>DeepTrail is not directed at children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information, please contact us at <a href="mailto:tenthinlay007@gmail.com" style="color:var(--accent)">tenthinlay007@gmail.com</a> and we will delete it promptly.</p>
+    </section>
+
+    <!-- 9. Changes to This Policy -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">9</span>
+        <h2>Changes to This Policy</h2>
+      </div>
+      <p>We may update this Privacy Policy as the extension evolves. When we do, we will update the "Last updated" date at the top of this document. For material changes, we will note them in the Chrome Web Store update notes. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+    </section>
+
+    <!-- 10. Contact -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2>Contact</h2>
+      </div>
+      <p>For privacy questions, data deletion requests, or concerns — please allow up to 7 business days for a response.</p>
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="contact-icon">👤</div>
+          <span>Tenzin Thinlay</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📧</div>
+          <a href="mailto:tenthinlay007@gmail.com">tenthinlay007@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" style="font-size:16px;">🐙</div>
+          <a href="https://github.com/tenzin333" target="_blank" rel="noopener">github.com/tenzin333</a>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">💻</div>
+          <a href="https://github.com/tenzin333/deeptrail" target="_blank" rel="noopener">Source code: github.com/tenzin333/deeptrail</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 DeepTrail · Developed by <a href="https://github.com/tenzin333" target="_blank" rel="noopener">Tenzin Thinlay</a></p>
+    <p style="margin-top:6px;">
+      <a href="https://github.com/tenzin333/deeptrail" target="_blank" rel="noopener">View Source on GitHub</a>
+      &nbsp;·&nbsp;
+      Extension v1.0.2
+      &nbsp;·&nbsp;
+      Last updated: May 27, 2026
+    </p>
+  </footer>
+
+</body>
+</html>

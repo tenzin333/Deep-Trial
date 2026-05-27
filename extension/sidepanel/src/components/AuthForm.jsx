@@ -23,24 +23,71 @@ export default function AuthForm({ onLogin, onRegister }) {
     }
   };
 
+  const canSubmit = !loading && email && password;
+
   return (
     <div
-      className="flex flex-col items-center justify-center h-screen px-6 max-w-full"
+      className="flex flex-col items-center justify-center h-screen px-6 max-w-full relative overflow-hidden"
       style={{ background: "var(--bg-base)" }}
     >
-      {/* Ambient glow */}
+      {/* Ambient orb 1 — blue, top center */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full blur-[120px] opacity-30 pointer-events-none"
-        style={{ background: "var(--accent)" }}
+        className="absolute pointer-events-none"
+        style={{
+          top: "-60px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "280px",
+          height: "280px",
+          borderRadius: "50%",
+          background: "var(--accent)",
+          filter: "blur(110px)",
+          opacity: 0.18,
+          animation: "orb-drift-1 8s ease-in-out infinite",
+        }}
+      />
+
+      {/* Ambient orb 2 — purple, bottom right */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: "-40px",
+          right: "-40px",
+          width: "220px",
+          height: "220px",
+          borderRadius: "50%",
+          background: "#9F7AEA",
+          filter: "blur(100px)",
+          opacity: 0.14,
+          animation: "orb-drift-2 10s ease-in-out infinite",
+        }}
+      />
+
+      {/* Ambient orb 3 — teal, bottom left */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: "20%",
+          left: "-30px",
+          width: "160px",
+          height: "160px",
+          borderRadius: "50%",
+          background: "#38BDF8",
+          filter: "blur(90px)",
+          opacity: 0.1,
+          animation: "orb-drift-3 7s ease-in-out infinite",
+        }}
       />
 
       {/* Logo */}
       <div className="relative mb-8 animate-fade-in-up">
+        {/* Floating logo icon */}
         <div
           className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
           style={{
-            background: "linear-gradient(135deg, var(--accent), #9F7AEA)",
-            boxShadow: "0 8px 32px rgba(108, 142, 239, 0.25)"
+            background: "var(--gradient-accent)",
+            boxShadow: "0 8px 32px rgba(108, 142, 239, 0.3), 0 0 0 1px rgba(108,142,239,0.15)",
+            animation: "float 3s ease-in-out infinite",
           }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -55,7 +102,16 @@ export default function AuthForm({ onLogin, onRegister }) {
             <line x1="16.2" y1="7.8" x2="18.4" y2="5.6"/>
           </svg>
         </div>
-        <h1 className="text-2xl font-bold text-center" style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}>
+        <h1
+          className="text-2xl font-bold text-center"
+          style={{
+            letterSpacing: "-0.04em",
+            background: "var(--gradient-accent)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
           DeepTrail
         </h1>
         <p className="text-sm text-center mt-1.5" style={{ color: "var(--text-muted)" }}>
@@ -69,25 +125,38 @@ export default function AuthForm({ onLogin, onRegister }) {
         style={{
           background: "var(--bg-raised)",
           border: "1px solid var(--border)",
-          boxShadow: "var(--shadow-lg)",
+          boxShadow: "var(--shadow-lg), 0 0 0 1px rgba(108,142,239,0.04)",
+          backdropFilter: "blur(20px)",
         }}
       >
         {/* Tab toggle */}
         <div
-          className="flex rounded-xl p-1 mb-5"
+          className="flex rounded-xl p-1 mb-5 relative"
           style={{ background: "var(--bg-overlay)" }}
         >
+          {/* Sliding active background */}
+          <div
+            className="absolute top-1 bottom-1 rounded-lg transition-all"
+            style={{
+              background: "var(--bg-surface)",
+              boxShadow: "var(--shadow-sm)",
+              left: isLogin ? "4px" : "calc(50% + 2px)",
+              width: "calc(50% - 6px)",
+              transition: "left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
+            }}
+          />
           {["Sign In", "Sign Up"].map((label, i) => {
             const active = i === 0 ? isLogin : !isLogin;
             return (
               <button
                 key={label}
                 onClick={() => { setIsLogin(i === 0); setError(""); }}
-                className="flex-1 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+                className="flex-1 py-2 rounded-lg text-sm font-medium relative z-10 transition-colors duration-200"
                 style={{
-                  background: active ? "var(--bg-surface)" : "transparent",
                   color: active ? "var(--text-primary)" : "var(--text-muted)",
-                  boxShadow: active ? "var(--shadow-sm)" : "none",
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
                 }}
               >
                 {label}
@@ -106,15 +175,23 @@ export default function AuthForm({ onLogin, onRegister }) {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl text-sm transition-all duration-200"
+              className="w-full px-3.5 py-2.5 rounded-xl text-sm"
               style={{
                 background: "var(--bg-overlay)",
                 border: "1px solid var(--border)",
                 color: "var(--text-primary)",
                 outline: "none",
+                fontFamily: "var(--font-sans)",
+                transition: "border-color 0.2s ease, box-shadow 0.2s ease",
               }}
-              onFocus={(e) => e.target.style.borderColor = "var(--accent)"}
-              onBlur={(e) => e.target.style.borderColor = "var(--border)"}
+              onFocus={(e) => {
+                e.target.style.borderColor = "var(--accent)";
+                e.target.style.boxShadow = "var(--glow-sm)";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "var(--border)";
+                e.target.style.boxShadow = "none";
+              }}
             />
           </div>
 
@@ -128,21 +205,29 @@ export default function AuthForm({ onLogin, onRegister }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-              className="w-full px-3.5 py-2.5 rounded-xl text-sm transition-all duration-200"
+              className="w-full px-3.5 py-2.5 rounded-xl text-sm"
               style={{
                 background: "var(--bg-overlay)",
                 border: "1px solid var(--border)",
                 color: "var(--text-primary)",
                 outline: "none",
+                fontFamily: "var(--font-sans)",
+                transition: "border-color 0.2s ease, box-shadow 0.2s ease",
               }}
-              onFocus={(e) => e.target.style.borderColor = "var(--accent)"}
-              onBlur={(e) => e.target.style.borderColor = "var(--border)"}
+              onFocus={(e) => {
+                e.target.style.borderColor = "var(--accent)";
+                e.target.style.boxShadow = "var(--glow-sm)";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "var(--border)";
+                e.target.style.boxShadow = "none";
+              }}
             />
           </div>
 
           {error && (
             <div
-              className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs"
+              className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs animate-fade-in"
               style={{
                 background: "var(--red-muted)",
                 color: "var(--red)",
@@ -158,30 +243,38 @@ export default function AuthForm({ onLogin, onRegister }) {
             </div>
           )}
 
+          {/* Submit button with shimmer effect */}
           <button
             onClick={handleSubmit}
-            disabled={loading || !email || !password}
-            className="w-full py-2.5 rounded-xl font-medium text-sm transition-all duration-200 mt-2"
+            disabled={!canSubmit}
+            className="shimmer-btn w-full py-2.5 rounded-xl font-medium text-sm mt-2"
             style={{
-              background: loading || !email || !password
-                ? "var(--bg-overlay)"
-                : "var(--accent)",
-              color: loading || !email || !password
-                ? "var(--text-muted)"
-                : "#fff",
-              cursor: loading || !email || !password ? "not-allowed" : "pointer",
-              boxShadow: loading || !email || !password
-                ? "none"
-                : "0 4px 16px rgba(108, 142, 239, 0.3)",
+              background: canSubmit ? "var(--gradient-accent)" : "var(--bg-overlay)",
+              color: canSubmit ? "#fff" : "var(--text-muted)",
+              cursor: canSubmit ? "pointer" : "not-allowed",
+              border: "none",
+              boxShadow: canSubmit ? "0 4px 20px rgba(108, 142, 239, 0.35), 0 1px 0 rgba(255,255,255,0.1) inset" : "none",
+              transition: "background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease",
+              transform: "scale(1)",
             }}
+            onMouseEnter={(e) => canSubmit && (e.currentTarget.style.transform = "scale(1.01)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            onMouseDown={(e) => canSubmit && (e.currentTarget.style.transform = "scale(0.98)")}
+            onMouseUp={(e) => canSubmit && (e.currentTarget.style.transform = "scale(1.01)")}
           >
             {loading ? (
-              <span className="flex items-center justify-center gap-2">
-                <div
-                  className="w-4 h-4 rounded-full border-2 border-t-transparent animate-spin"
-                  style={{ borderColor: "currentColor", borderTopColor: "transparent" }}
-                />
-                {isLogin ? "Signing in..." : "Creating account..."}
+              <span className="flex items-center justify-center gap-2.5">
+                {/* Three animated dots */}
+                {[0, 1, 2].map((i) => (
+                  <span
+                    key={i}
+                    className="inline-block w-1.5 h-1.5 rounded-full"
+                    style={{
+                      background: "rgba(255,255,255,0.8)",
+                      animation: `dot-bounce 1.2s ease-in-out ${i * 0.2}s infinite`,
+                    }}
+                  />
+                ))}
               </span>
             ) : (
               isLogin ? "Sign In" : "Create Account"

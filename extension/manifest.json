@@ -3,6 +3,7 @@
   "name": "DeepTrail",
   "description": "AI-Powered Research Knowledge Graph",
   "version": "1.0.2",
+  "homepage_url": "https://github.com/tenzin333/deeptrail",
   "permissions": ["activeTab", "tabs", "sidePanel", "storage"],
   "host_permissions": [
     "https://deep-trial.onrender.com/*",

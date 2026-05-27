@@ -7,18 +7,21 @@ const statusConfig = {
     color: "var(--green)",
     bg: "var(--green-muted)",
     label: "Done",
+    pulse: false,
   },
   pending: {
     icon: Clock,
     color: "var(--amber)",
     bg: "var(--amber-muted)",
     label: "Processing",
+    pulse: true,
   },
   failed: {
     icon: AlertCircle,
     color: "var(--red)",
     bg: "var(--red-muted)",
     label: "Failed",
+    pulse: false,
   },
 };
 
@@ -37,10 +40,13 @@ export default function ActivityFeed() {
 
   if (nodes.length === 0) {
     return (
-      <div className="text-center py-10 animate-fade-in">
+      <div className="text-center py-12 animate-fade-in">
         <div
-          className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4"
-          style={{ background: "var(--accent-muted)" }}
+          className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float"
+          style={{
+            background: "var(--accent-muted)",
+            boxShadow: "var(--glow-sm)",
+          }}
         >
           <Clock size={20} style={{ color: "var(--accent)" }} />
         </div>
@@ -63,7 +69,8 @@ export default function ActivityFeed() {
         Recent Captures
       </p>
 
-      <div className="space-y-2">
+      {/* Timeline list */}
+      <div className="space-y-2 timeline-list">
         {nodes.map((node, index) => {
           const status = statusConfig[node.summary_status] || statusConfig.pending;
           const StatusIcon = status.icon;
@@ -74,26 +81,34 @@ export default function ActivityFeed() {
               href={node.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 rounded-xl p-3 transition-all duration-200 animate-fade-in-up"
+              className="flex items-start gap-3 rounded-xl p-3 transition-all duration-200 animate-fade-in-up relative"
               style={{
                 background: "var(--bg-surface)",
                 border: "1px solid var(--border)",
                 animationDelay: `${index * 0.04}s`,
                 animationFillMode: "backwards",
+                textDecoration: "none",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "var(--border-active)";
                 e.currentTarget.style.background = "var(--bg-overlay)";
+                e.currentTarget.style.boxShadow = "var(--glow-sm)";
+                e.currentTarget.style.transform = "translateY(-1px)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = "var(--border)";
                 e.currentTarget.style.background = "var(--bg-surface)";
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              {/* Status icon */}
+              {/* Status icon with optional pulse ring */}
               <div
                 className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
-                style={{ background: status.bg }}
+                style={{
+                  background: status.bg,
+                  animation: status.pulse ? "glow-ping 1.5s ease-out infinite" : "none",
+                }}
               >
                 <StatusIcon size={13} style={{ color: status.color }} />
               </div>
@@ -129,8 +144,9 @@ export default function ActivityFeed() {
                         key={i}
                         className="text-[9px] font-medium px-1.5 py-0.5 rounded-md"
                         style={{
-                          background: "var(--accent-muted)",
+                          background: "linear-gradient(135deg, var(--accent-muted), rgba(159, 122, 234, 0.12))",
                           color: "var(--accent)",
+                          border: "1px solid rgba(108, 142, 239, 0.12)",
                         }}
                       >
                         {kw}
