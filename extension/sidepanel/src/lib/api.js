@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_BASE;
+// Fallback to the production backend so a missing VITE_API_BASE can never
+// resolve auth requests against the extension's own origin (chrome-extension://...).
+const API_BASE = import.meta.env.VITE_API_BASE || "https://deep-trial.onrender.com/api";
 const ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
-console.log("API_BASE",API_BASE)
 const api = axios.create({
   baseURL: ENVIRONMENT=="development" ? "http://localhost:8000/api" : API_BASE,
   headers: { "Content-Type": "application/json" }

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "DeepTrail",
   "description": "AI-Powered Research Knowledge Graph",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage_url": "https://github.com/tenzin333/deeptrail",
   "permissions": ["activeTab", "tabs", "sidePanel", "storage"],
   "host_permissions": [

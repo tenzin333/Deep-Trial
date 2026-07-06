@@ -1,6 +1,6 @@
 # DeepTrail — Privacy Policy
 
-**Last updated:** May 27, 2026  
+**Last updated:** June 27, 2026  
 **Extension version:** 1.0.2  
 **Developer:** Tenzin Thinlay · [github.com/tenzin333](https://github.com/tenzin333) · tenthinlay007@gmail.com
 
@@ -86,6 +86,19 @@ DeepTrail sends data to the following third-party services to provide AI feature
 | **Jina Reader API** | Page URL only (not page content) | Extracts readable text from JavaScript-heavy pages when standard parsing fails | [Jina AI Privacy Policy](https://jina.ai/legal/#privacy-policy) |
 
 > **Important:** Page content sent to these services is transmitted transiently solely for processing. DeepTrail does not instruct these providers to use your data for training their models.
+
+### 4.1 Data Sharing — Summary
+
+DeepTrail shares user data **only** with the third-party processors listed in the table above, and **only** to the extent needed to deliver the features you trigger (embeddings, summaries, and RAG answers). Specifically, DeepTrail does **not**:
+
+- Sell or rent your personal or browsing data to anyone;
+- Transfer your data to data brokers, advertising networks, or for any advertising/marketing purpose;
+- Share your data with third parties for purposes unrelated to the extension's single core function;
+- Use or transfer your data to determine creditworthiness or for lending purposes.
+
+### 4.2 Limited Use Compliance
+
+DeepTrail's collection, use, and transfer of user data complies with the [Chrome Web Store User Data Policy](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq/), including its **Limited Use** requirements. All user data is used solely to provide and improve the extension's single purpose — building and querying your personal research knowledge graph — and for security and legal-compliance purposes where required.
 
 ---
 
